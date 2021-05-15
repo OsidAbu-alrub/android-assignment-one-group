@@ -11,4 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    private void method(){
+        // this method is on upstream only
+    }
 }
