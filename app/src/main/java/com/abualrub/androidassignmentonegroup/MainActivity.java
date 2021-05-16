@@ -15,4 +15,8 @@ public class MainActivity extends AppCompatActivity {
     public void method(){
 //        this method is here!
     }
+
+    public void myMethod(){
+//        this is my own method
+    }
 }
