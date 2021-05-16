@@ -15,8 +15,13 @@ public class MainActivity extends AppCompatActivity {
     public void method(){
 //        this method is here!
     }
-
-    public void mutair_method(){
-
+  
+    public void mutair_method()
+    {
+      
+    }
+  
+    public void myMethod(){
+//     this is my own method
     }
 }
