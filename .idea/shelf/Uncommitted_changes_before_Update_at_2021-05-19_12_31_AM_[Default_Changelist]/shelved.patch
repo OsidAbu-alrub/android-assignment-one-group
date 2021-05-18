@@ -1,0 +1,586 @@
+Index: app/src/main/java/com/abualrub/androidassignmentonegroup/domain/Root.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/abualrub/androidassignmentonegroup/domain/Root.java	(date 1621358737016)
++++ app/src/main/java/com/abualrub/androidassignmentonegroup/domain/Root.java	(date 1621358737016)
+@@ -0,0 +1,41 @@
++package com.abualrub.androidassignmentonegroup.domain;
++
++public class Root<T> {
++    private String error;
++    private boolean isError;
++    private T data;
++
++    public Root(){
++
++    }
++
++    public Root(String error,boolean isError,T data){
++        this.error = error;
++        this.isError = isError;
++        this.data = data;
++    }
++
++    public String getError() {
++        return error;
++    }
++
++    public void setError(String error) {
++        this.error = error;
++    }
++
++    public boolean isError(){
++        return isError;
++    }
++
++    public void setIsError(boolean isError){
++        this.isError = isError;
++    }
++
++    public T getData() {
++        return data;
++    }
++
++    public void setData(T data) {
++        this.data = data;
++    }
++}
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(date 1621344983180)
++++ app/src/main/res/layout/activity_register.xml	(date 1621344983180)
+@@ -0,0 +1,116 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".RegisterActivity">
++
++    <androidx.appcompat.widget.Toolbar
++        android:layout_width="match_parent"
++        android:layout_height="70dp"
++        android:background="@color/purple_500"
++        android:id="@+id/toolbar"
++        >
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:id="@+id/toolbar_title"
++            android:text="Create Account"
++            android:textColor="@color/white"
++            android:textSize="30sp"
++            />
++    </androidx.appcompat.widget.Toolbar>
++
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_below="@id/toolbar"
++        >
++
++        <RelativeLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            style="@style/rootPadding">
++
++            <TextView
++                android:text="Educative IO"
++                android:id="@+id/textViewTitle"
++                style="@style/textViewLoginTitle" />
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:layout_below="@id/textViewTitle"
++                android:id="@+id/editTextFirstName"
++
++                android:hint="first name"
++                android:textSize="20sp"/>
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:id="@+id/editTextLastName"
++                android:hint="last name"
++                android:layout_below="@id/editTextFirstName"
++                android:textSize="20sp"/>
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:id="@+id/editTextUserName"
++                android:hint="username"
++                android:layout_below="@id/editTextLastName"
++                android:textSize="20sp"/>
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:id="@+id/editTextEmail"
++                android:layout_below="@id/editTextUserName"
++                android:hint="email"
++                android:textSize="20sp"/>
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:id="@+id/editTextPassword"
++                android:layout_below="@id/editTextEmail"
++                android:hint="password"
++                android:textSize="20sp"/>
++
++            <EditText
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:layout_below="@id/editTextPassword"
++                android:id="@+id/editTextPhoneNumber"
++                android:hint="phone number"
++                android:textSize="20sp"/>
++
++            <Button
++                android:id="@+id/buttonRegister"
++                style="@style/buttonStyle"
++                android:onClick="buttonRegisterHandle"
++                android:layout_below="@+id/editTextPhoneNumber"
++                android:text="Register"
++                android:layout_marginTop="50dp"
++                android:layout_centerHorizontal="true"/>
++
++            <Button
++                android:id="@+id/buttonLogin"
++                style="@style/buttonStyle"
++                android:onClick="buttonLoginHandle"
++                android:text="Login"
++                android:layout_below="@id/buttonRegister"
++                android:layout_centerHorizontal="true"/>
++        </RelativeLayout>
++
++    </ScrollView>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/abualrub/androidassignmentonegroup/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/abualrub/androidassignmentonegroup/RegisterActivity.java	(date 1621277745613)
++++ app/src/main/java/com/abualrub/androidassignmentonegroup/RegisterActivity.java	(date 1621277745613)
+@@ -0,0 +1,61 @@
++package com.abualrub.androidassignmentonegroup;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.EditText;
++import android.widget.Toast;
++
++import com.abualrub.androidassignmentonegroup.utils.Validator;
++
++public class RegisterActivity extends AppCompatActivity {
++
++    private EditText editTextFirstName;
++    private EditText editTextLastName;
++    private EditText editTextUserName;
++    private EditText editTextEmail;
++    private EditText editTextPhoneNumber;
++    private EditText editTextPassword;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_register);
++        editTextFirstName = findViewById(R.id.editTextFirstName);
++        editTextLastName = findViewById(R.id.editTextLastName);
++        editTextUserName = findViewById(R.id.editTextUserName);
++        editTextEmail = findViewById(R.id.editTextEmail);
++        editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
++        editTextPassword = findViewById(R.id.editTextPassword);
++    }
++
++    public void buttonLoginHandle(View view) {
++        Intent i = new Intent(this,LoginActivity.class);
++        startActivity(i);
++    }
++
++    public void buttonRegisterHandle(View view){
++        String firstName = editTextFirstName.getText().toString().trim();
++        String lastName = editTextLastName.getText().toString().trim();
++        String username = editTextUserName.getText().toString().trim();
++        String email = editTextEmail.getText().toString().trim();
++        String password = editTextPassword.getText().toString().trim();
++        String phoneNumber = editTextPhoneNumber.getText().toString().trim();
++        Validator validator = new Validator();
++        if(!validator.isValidName(firstName)) showToast("Invalid first name");
++        if(!validator.isValidName(lastName)) showToast("Invalid last name");
++        if(!validator.isValidName(username)) showToast("Invalid username");
++        if(!validator.isValidName(email)) showToast("Invalid email");
++        if(!validator.isValidName(password)) showToast("Invalid password");
++        if(!validator.isValidName(phoneNumber)) showToast("Invalid phone number");
++
++        // TODO: CHECK IF USERNAME ALREADY IN DATABASE
++        // TODO: GO TO MAIN ACTIVITY
++    }
++
++    private void showToast(String message){
++        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/abualrub/androidassignmentonegroup/utils/IURLs.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/abualrub/androidassignmentonegroup/utils/IURLs.java	(date 1621369168417)
++++ app/src/main/java/com/abualrub/androidassignmentonegroup/utils/IURLs.java	(date 1621369168417)
+@@ -0,0 +1,62 @@
++package com.abualrub.androidassignmentonegroup.utils;
++
++public interface IURLs {
++
++    // =====================================================
++    // GET
++    // TAKES: NOTHING
++    // RETURNS: ARRAY OF COURSES
++    // =====================================================
++    public static final String URL_COURSES = "http://localhost/android-rest/group-assignment-one/validate-username.php";
++
++    // =====================================================
++    // GET
++    // TAKES: studentId
++    // RETURNS: Student Object
++    // =====================================================
++    public static final String URL_GET_STUDENT = "http://localhost/android-rest/group-assignment-one/get-student.php";
++
++    // =====================================================
++    // POST
++    // TAKES:
++    // 	userName
++    // 	password
++    // RETURNS: Student Object
++    // =====================================================
++    public static final String URL_LOGIN = "http://localhost/android-rest/group-assignment-one/login.php";
++
++    // =====================================================
++    // GET
++    // TAKES: studentId
++    // RETURNS: ARRAY OF NOTES
++    // =====================================================
++    public static final String URL_NOTES = "http://localhost/android-rest/group-assignment-one/notes.php";
++
++    // =====================================================
++    // POST
++    // TAKES:
++    //	firstName
++    // 	lastName
++    // 	userName
++    // 	password
++    // 	email
++    // 	phoneNumber
++    // RETURNS: Student Object
++    // =====================================================
++    public static final String URL_REGISTER = "http://localhost/android-rest/group-assignment-one/register.php";
++
++    // =====================================================
++    // POST
++    // TAKES: Student Object
++    // RETURNS: Updated Student Object
++    // =====================================================
++    public static final String URL_UPDATE_STUDENT= "http://localhost/android-rest/group-assignment-one/update-student.php";
++
++    // =====================================================
++    // GET
++    // TAKES: USERNAME
++    // RETURNS: USERNAME
++    // =====================================================
++    public static final String URL_VALIDATE_USERNAME= "http://localhost/android-rest/group-assignment-one/validate-username.php";
++
++}
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(date 1621344880914)
++++ app/src/main/res/values/styles.xml	(date 1621344880914)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <style name="textViewLoginTitle">
++        <item name="android:layout_width">match_parent</item>
++        <item name="android:layout_height">wrap_content</item>
++        <item name="android:gravity">center</item>
++        <item name="android:textSize">30sp</item>
++        <item name="android:textStyle">bold</item>
++    </style>
++
++    <style name="buttonStyle">
++        <item name="android:layout_width">wrap_content</item>
++        <item name="android:layout_height">wrap_content</item>
++        <item name="android:textSize">20sp</item>
++        <item name="android:paddingTop">15dp</item>
++        <item name="android:paddingBottom">15dp</item>
++        <item name="android:paddingLeft">30dp</item>
++        <item name="android:paddingRight">30dp</item>
++    </style>
++
++    <style name="rootPadding">
++        <item name="android:padding">30dp</item>
++    </style>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(date 1621354051734)
++++ app/src/main/res/layout/activity_login.xml	(date 1621354051734)
+@@ -0,0 +1,95 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".LoginActivity">
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="70dp"
++        android:background="@color/purple_500"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <TextView
++            android:id="@+id/toolbar_title"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Login Into Account"
++            android:textColor="@color/white"
++            android:textSize="30sp" />
++    </androidx.appcompat.widget.Toolbar>
++
++    <TextView
++        android:text="Educative IO"
++        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        style="@style/textViewLoginTitle" />
++
++    <RelativeLayout
++        android:id="@+id/relativeLayout"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        style="@style/rootPadding"
++        >
++
++        <TextView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="display"
++            android:gravity="center"
++            android:textSize="20sp"
++            android:id="@+id/temp"
++            />
++
++        <EditText
++            android:id="@+id/editTextUserName"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="username"
++            android:layout_below="@+id/temp"
++            android:textSize="20sp"/>
++
++        <EditText
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_below="@+id/editTextUserName"
++            android:layout_marginTop="30dp"
++            android:id="@+id/editTextPassword"
++            android:hint="password"
++            android:textSize="20sp"/>
++
++    </RelativeLayout>
++
++    <Button
++        android:id="@+id/buttonLogin"
++        style="@style/buttonStyle"
++        android:onClick="buttonLoginHandle"
++        android:text="Login"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
++        app:layout_constraintVertical_bias="0.351" />
++
++    <Button
++        android:id="@+id/buttonRegister"
++        style="@style/buttonStyle"
++        android:onClick="buttonRegisterHandle"
++        android:text="Register"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/abualrub/androidassignmentonegroup/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/abualrub/androidassignmentonegroup/LoginActivity.java	(date 1621369900380)
++++ app/src/main/java/com/abualrub/androidassignmentonegroup/LoginActivity.java	(date 1621369900380)
+@@ -0,0 +1,85 @@
++package com.abualrub.androidassignmentonegroup;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.os.Bundle;
++import android.preference.PreferenceManager;
++import android.view.View;
++import android.widget.EditText;
++import android.widget.Toast;
++
++import com.abualrub.androidassignmentonegroup.domain.Student;
++import com.abualrub.androidassignmentonegroup.utils.ITags;
++import com.abualrub.androidassignmentonegroup.utils.IURLs;
++import com.abualrub.androidassignmentonegroup.utils.Validator;
++import com.google.gson.Gson;
++
++public class LoginActivity extends AppCompatActivity implements ITags, IURLs {
++
++    private EditText editTextUserName;
++    private EditText editTextPassword;
++    private SharedPreferences prefs;
++    private SharedPreferences.Editor editor;
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_login);
++        init();
++
++        boolean isCreated = prefs.getBoolean(IS_CREATED,false);
++        if(!isCreated) return;
++        Student student = new Gson().fromJson(prefs.getString(STUDENT,null),Student.class);
++        editTextUserName.setText(student.getUserName());
++        editTextPassword.setText(student.getPassword());
++    }
++
++    public void buttonLoginHandle(View view) {
++        String username = editTextUserName.getText().toString().trim();
++        String password = editTextPassword.getText().toString().trim();
++
++        Validator validator = new Validator();
++        if (!validator.isValidUserName(username)) {
++            showToast("Invalid username");
++            return;
++        }
++
++        if (!validator.isValidPassword(password)) {
++            showToast("Invalid password");
++            return;
++        }
++        // TODO: check db if account exists
++
++        // TODO: GET FROM DB AND STORE NAME AND PASSWORD IN CACHE
++        Student student = new Student();
++        String studentJson = new Gson().toJson(student);
++
++        editor.putBoolean(IS_CREATED,true);
++        editor.putString(STUDENT,studentJson);
++        editor.commit();
++
++        // TODO: go to main activity
++        Intent i = new Intent(this,MainActivity.class);
++        i.putExtra(STUDENT,studentJson);
++        startActivity(i);
++    }
++
++    public void buttonRegisterHandle(View view) {
++        Intent i = new Intent(this,RegisterActivity.class);
++        i.putExtra(USERNAME,editTextUserName.getText().toString().trim());
++        i.putExtra(PASSWORD,editTextPassword.getText().toString().trim());
++        startActivity(i);
++    }
++
++    private void init(){
++        editTextUserName = findViewById(R.id.editTextUserName);
++        editTextPassword = findViewById(R.id.editTextPassword);
++        prefs = PreferenceManager.getDefaultSharedPreferences(this);
++        editor = prefs.edit();
++    }
++
++    private void showToast(String message){
++        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/abualrub/androidassignmentonegroup/utils/ITags.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/abualrub/androidassignmentonegroup/utils/ITags.java	(date 1621369839976)
++++ app/src/main/java/com/abualrub/androidassignmentonegroup/utils/ITags.java	(date 1621369839976)
+@@ -0,0 +1,13 @@
++package com.abualrub.androidassignmentonegroup.utils;
++
++public interface ITags {
++    public static final String IS_CREATED = "IS_CREATED";
++    public static final String STUDENT = "STUDENT";
++    public static final String STUDENT_ID = "STUDENT_ID";
++    public static final String FIRST_NAME = "FIRST_NAME";
++    public static final String LAST_NAME = "LAST_NAME";
++    public static final String USERNAME = "USERNAME";
++    public static final String PASSWORD = "PASSWORD";
++    public static final String EMAIL = "EMAIL";
++    public static final String PHONE_NUMBER = "PHONE_NUMBER";
++}
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.abualrub.androidassignmentonegroup\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.AndroidAssignmentOneGroup\">\r\n        <activity android:name=\".MainActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 29a34ea8dc73aa203a886c259eb60954021fceb6)
++++ app/src/main/AndroidManifest.xml	(date 1621347843302)
+@@ -8,7 +8,9 @@
+         android:label="@string/app_name"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+-        android:theme="@style/Theme.AndroidAssignmentOneGroup">
++        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
++        <activity android:name=".RegisterActivity"></activity>
++        <activity android:name=".LoginActivity" />
+         <activity android:name=".MainActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
