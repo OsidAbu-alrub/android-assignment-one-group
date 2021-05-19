@@ -19,9 +19,14 @@ public interface IURLs {
     public static final String URL_LOGIN = "http://10.0.2.2/android-rest/group-assignment-one/login.php";
     // =================================================================================
     // GET
-    // TAKES: studentId
-    // RETURNS: ARRAY OF NOTES
-    public static final String URL_NOTES = "http://10.0.2.2/android-rest/group-assignment-one/notes.php";
+    // TAKES:
+    //	studentId
+    //	courseId
+    // RETURNS:
+    //  TUPLE
+    //	  index 0 -> notes array
+    //    index 1 -> course object
+    public static final String URL_NOTES = "http://10.0.2.2/android-rest/group-assignment-one/get-course-details.php";
     // =================================================================================
     // POST
     // TAKES:
