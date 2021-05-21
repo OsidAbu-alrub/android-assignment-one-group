@@ -53,12 +53,11 @@
                 android:inputType="text"/>
 
             <TextView
+                android:id="@+id/textViewUsernameRules"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextUsername"
-                android:id="@+id/textViewUsernameRules"
-                android:text="*length between 3 and 30"
-                />
+                android:text="@string/osid_textViewUsernameRules" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -69,36 +68,32 @@
                 android:inputType="textPassword"/>
 
             <TextView
+                android:id="@+id/textViewPasswordRulesNumeric"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextPassword"
-                android:id="@+id/textViewPasswordRulesNumeric"
-                android:text="*must contain one number"
-                />
+                android:text="@string/osid_textViewPasswordRulesNumeric" />
 
             <TextView
+                android:id="@+id/textViewPasswordRulesLowercase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesNumeric"
-                android:id="@+id/textViewPasswordRulesLowercase"
-                android:text="*must contain lowercase character"
-                />
+                android:text="@string/osid_textViewPasswordRulesLowercase" />
 
             <TextView
+                android:id="@+id/textViewPasswordRulesUppercase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesLowercase"
-                android:id="@+id/textViewPasswordRulesUppercase"
-                android:text="*must contain one uppercase character"
-                />
+                android:text="@string/osid_textViewPasswordRulesUppercase" />
 
             <TextView
+                android:id="@+id/textViewPasswordRulesLength"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesUppercase"
-                android:id="@+id/textViewPasswordRulesLength"
-                android:text="*length between 5 and 30"
-                />
+                android:text="@string/osid_textViewPasswordRulesLength" />
 
             <Button
                 android:id="@+id/buttonLogin"

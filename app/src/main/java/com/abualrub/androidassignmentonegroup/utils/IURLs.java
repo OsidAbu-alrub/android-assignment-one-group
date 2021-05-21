@@ -45,4 +45,12 @@ public interface IURLs {
     // RETURNS: Updated Student Object
     public static final String URL_UPDATE_STUDENT = "http://98.90.90.110/android-rest/group-assignment-one/update-student.php";
     // =================================================================================
+    // POST
+    // TAKES:
+    //	studentId
+    //	courseId
+    //  notes array (strings)
+    // RETURNS:
+    //  Message object
+    public static final String URL_UPDATE_NOTES = "http://98.90.90.110/android-rest/group-assignment-one/update-notes.php";
 }

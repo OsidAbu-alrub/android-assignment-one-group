@@ -16,4 +16,13 @@
     <string name="osid_textViewLoginToAccount">
         <u> Got an account? Login here! </u>
     </string>
+    <string name="osid_textViewUsernameRules">*length between 3 and 30</string>
+    <string name="osid_textViewPasswordRulesNumeric">*must contain one number</string>
+    <string name="osid_textViewPasswordRulesLowercase">*must contain one lowercase character</string>
+    <string name="osid_textViewPasswordRulesUppercase">*must contain one uppercase character</string>
+    <string name="osid_textViewPasswordRulesLength">*length between 5 and 30</string>
+    <string name="osid_textViewNameRulesEnglishCharacters">*only english letters</string>
+    <string name="osid_textViewNameRulesLength">*length between 2 and 15</string>
+    <string name="osid_textViewEmailRules">*must follow this format: person@examle.com</string>
+    <string name="osid_textViewPhoneNumberRules">*10 numbers</string>
 </resources>

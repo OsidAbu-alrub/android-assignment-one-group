@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextUsername"
                 android:id="@+id/textViewUserNameRulesLength"
-                android:text="*length between 3 and 30"
+                android:text="@string/osid_textViewUsernameRules"
                 />
 
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextPassword"
                 android:id="@+id/textViewPasswordRulesNumeric"
-                android:text="*must contain one number"
+                android:text="@string/osid_textViewPasswordRulesNumeric"
                 />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesNumeric"
                 android:id="@+id/textViewPasswordRulesLowercase"
-                android:text="*must contain lowercase character"
+                android:text="@string/osid_textViewPasswordRulesLowercase"
                 />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesLowercase"
                 android:id="@+id/textViewPasswordRulesUppercase"
-                android:text="*must contain one uppercase character"
+                android:text="@string/osid_textViewPasswordRulesUppercase"
                 />
 
             <TextView
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewPasswordRulesUppercase"
                 android:id="@+id/textViewPasswordRulesLength"
-                android:text="*length between 5 and 30"
+                android:text="@string/osid_textViewPasswordRulesLength"
                 />
 
             <EditText
@@ -108,20 +108,18 @@
                 android:inputType="text"/>
 
             <TextView
+                android:id="@+id/textViewFirstNameRulesEnglishCharacters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextFirstName"
-                android:id="@+id/textViewFirstNameRulesEnglishCharacters"
-                android:text="*only english letters"
-                />
+                android:text="@string/osid_textViewNameRulesEnglishCharacters" />
 
             <TextView
+                android:id="@+id/textViewFirstNameRulesLength"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewFirstNameRulesEnglishCharacters"
-                android:id="@+id/textViewFirstNameRulesLength"
-                android:text="*length between 2 and 15"
-                />
+                android:text="@string/osid_textViewNameRulesLength" />
 
 
             <EditText
@@ -137,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextLastName"
                 android:id="@+id/textViewLastNameRulesEnglishCharacters"
-                android:text="*only english letters"
+                android:text="@string/osid_textViewNameRulesEnglishCharacters"
                 />
 
             <TextView
@@ -145,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewLastNameRulesEnglishCharacters"
                 android:id="@+id/textViewLastNameRulesLength"
-                android:text="*length between 2 and 15"
+                android:text="@string/osid_textViewNameRulesLength"
                 />
 
 
@@ -158,12 +156,11 @@
                 android:inputType="textEmailAddress"/>
 
             <TextView
+                android:id="@+id/textViewEmailRules"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextEmail"
-                android:id="@+id/textViewEmailRules"
-                android:text="*person@example.com"
-                />
+                android:text="@string/osid_textViewEmailRules" />
 
 
             <EditText
@@ -175,12 +172,11 @@
                 android:inputType="number"/>
 
             <TextView
+                android:id="@+id/textViewPhoneNumberRules"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextPhoneNumber"
-                android:id="@+id/textViewPhoneNumberRules"
-                android:text="*person@example.com"
-                />
+                android:text="@string/osid_textViewPhoneNumberRules" />
 
             <Button
                 android:id="@+id/buttonRegister"
