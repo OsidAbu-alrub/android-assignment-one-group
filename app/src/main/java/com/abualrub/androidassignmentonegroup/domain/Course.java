@@ -7,11 +7,18 @@ public class Course {
     private String url;
     private String title;
     private String shortDesc;
+    int icon;
     private String longDesc;
     private ArrayList<String> notes;
 
     public Course(){
 
+    }
+
+    public Course(String title, String shortDesc, int icon) {
+        this.title = title;
+        this.shortDesc = shortDesc;
+        this.icon = icon;
     }
 
     public Course(int courseId, String url, String title, String shortDesc, String longDesc, ArrayList<String> notes) {
@@ -21,6 +28,15 @@ public class Course {
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
         this.notes = notes;
+
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
     public int getCourseId() {
