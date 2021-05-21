@@ -3,83 +3,139 @@ package com.abualrub.androidassignmentonegroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.Toast;
 
+import com.abualrub.androidassignmentonegroup.domain.Root;
+import com.abualrub.androidassignmentonegroup.domain.Student;
+import com.abualrub.androidassignmentonegroup.utils.HttpPost;
+import com.abualrub.androidassignmentonegroup.utils.ITags;
+import com.abualrub.androidassignmentonegroup.utils.IURLs;
+import com.abualrub.androidassignmentonegroup.utils.Utils;
 import com.abualrub.androidassignmentonegroup.utils.Validator;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class ProfileActivity extends AppCompatActivity {
-    private EditText edtFName,edtLName,edtPass,edtEmail,edtPhone;
-    private Button btnSaveProfile;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+
+// *********************************
+// MADE BY Suzan Altawil (1162347)
+// ALSO OSID ABU-ALRUB (1183096)
+// *********************************
+public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
+    private EditText editTextUserName, editTextPassword,editTextEmail,editTextPhoneNumber,
+            editTextFirstName,editTextLastName;
+    private SharedPreferences.Editor editor;
+    private Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        edtFName = findViewById(R.id.edtFName);
-        edtLName = findViewById(R.id.edtLName);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtPass = findViewById(R.id.edtPass);
-        edtPhone = findViewById(R.id.edtPhone);
-        btnSaveProfile =findViewById(R.id.btnSaveProfile);
-
+        init();
+        getIntentData();
     }
 
+    private void init(){
+        editTextUserName = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
+        editTextFirstName = findViewById(R.id.editTextFirstName);
+        editTextLastName = findViewById(R.id.editTextLastName);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editor =  PreferenceManager.getDefaultSharedPreferences(this).edit();
+    }
 
-    public void btnSave_onClick(View view) {
+    private void getIntentData(){
+        Gson gson = new Gson();
+        student = gson.fromJson(getIntent().getStringExtra(STUDENT),Student.class);
+        if(student == null) {
+            Toast.makeText(this, "Fatal error. Account not found!", Toast.LENGTH_SHORT).show();
+            findViewById(R.id.buttonSave).setEnabled(false);
+            return;
+        }
+        editTextUserName.setText(student.getUserName());
+        editTextEmail.setText(student.getEmail());
+        editTextFirstName.setText(student.getFirstName());
+        editTextLastName.setText(student.getLastName());
+        editTextPassword.setText(student.getPassword());
+        editTextPhoneNumber.setText(student.getPhoneNumber());
+    }
 
-        Validator val = new Validator();
-        String fname = edtFName.getText().toString().trim();
-        String lname = edtLName.getText().toString().trim();
-        String email = edtEmail.getText().toString().trim();
-        String pass = edtPass.getText().toString().trim();
-        String phone = edtPhone.getText().toString().trim();
+    public void buttonSaveHandleClick(View view) {
+        String userName = editTextUserName.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String phoneNumber = editTextPhoneNumber.getText().toString().trim();
+        String firstName = editTextFirstName.getText().toString().trim();
+        String lastName = editTextLastName.getText().toString().trim();
 
-        if(fname.length()==0){
-            edtFName.requestFocus();
-            edtFName.setError("FIELD CANNOT BE EMPTY");
-            //Toast.makeText(this, "FIELD CANNOT BE EMPTY", Toast.LENGTH_SHORT).show();
-        }
-        else if(!val.isValidName(fname)){
-            edtFName.requestFocus();
-            edtFName.setError("NOT VALID FIRST NAME");
-        }
-        if(lname.length()==0){
-            edtLName.requestFocus();
-            edtLName.setError("FIELD CANNOT BE EMPTY");
-        }
-        else if(!val.isValidName(lname)){
-            edtLName.requestFocus();
-            edtLName.setError("NOT VALID LAST NAME");
+        Validator validator = new Validator(this);
+        if(!validator.isValidUserName(userName)) return;
+        if(!validator.isValidPassword(password)) return;
+        if(!validator.isValidName(firstName)) return;
+        if(!validator.isValidName(lastName)) return;
+        if(!validator.isValidEmail(email)) return;
+        if(!validator.isValidPhoneNumber(phoneNumber)) return;
+
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put(STUDENT_ID,student.getStudentId()+"");
+        params.put(USERNAME,userName);
+        params.put(PASSWORD,password);
+        params.put(EMAIL,email);
+        params.put(PHONE_NUMBER,phoneNumber);
+        params.put(FIRST_NAME,firstName);
+        params.put(LAST_NAME,lastName);
+
+        // send POST request
+        ProfileUpdateTask runner = new ProfileUpdateTask();
+        runner.execute(URL_UPDATE_STUDENT,params);
+    }
+
+    private void startMainActivity(Student student){
+        String jsonStudent = new Gson().toJson(student);
+
+        // save to shared prefs
+        editor.putString(STUDENT,jsonStudent);
+        editor.putBoolean(IS_CREATED,true);
+        editor.commit();
+
+        // start main activity
+        Intent i = new Intent(this,MainActivity.class);
+        i.putExtra(STUDENT,jsonStudent);
+        finish();
+        startActivity(i);
+    }
+
+    private class ProfileUpdateTask extends AsyncTask<Object,Void,String> {
+        @Override
+        protected String doInBackground(Object ...args){
+            String URL = args[0]+"";
+            HashMap<String,String> params = (HashMap<String,String>)args[1];
+            HttpPost req = new HttpPost();
+            return req.post(URL,params);
         }
 
-        if(email.length()==0){
-            edtEmail.requestFocus();
-            edtEmail.setError("FIELD CANNOT BE EMPTY");
+        @Override
+        protected void onPostExecute(String result) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<Root<Student>>(){}.getType();
+            Root<Student> res = gson.fromJson(result,type);
+            if(res.isError()){
+                Toast.makeText(ProfileActivity.this, res.getError(), Toast.LENGTH_LONG).show();
+                return;
+            }
+            Toast.makeText(ProfileActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
+            startMainActivity(res.getData());
         }
-        else if(!val.isValidEmail(email)){
-            edtEmail.requestFocus();
-            edtEmail.setError("NOT VALID EMAIL");
-        }
-        if(pass.length()==0){
-            edtPass.requestFocus();
-            edtPass.setError("FIELD CANNOT BE EMPTY");
-        }
-        else if(!val.isValidPassword(pass)){
-            edtPass.requestFocus();
-            edtPass.setError("NOT VALID PASSWORD");
-        }
-        if(phone.length()==0){
-            edtPhone.requestFocus();
-            edtPhone.setError("FIELD CANNOT BE EMPTY");
-        }
-        else if(!val.isValidPhoneNumber(phone)){
-            edtPhone.requestFocus();
-            edtPhone.setError("NOT VALID PHONE NUMBER");
-        }
-
     }
 }

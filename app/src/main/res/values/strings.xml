@@ -25,4 +25,6 @@
     <string name="osid_textViewNameRulesLength">*length between 2 and 15</string>
     <string name="osid_textViewEmailRules">*must follow this format: person@examle.com</string>
     <string name="osid_textViewPhoneNumberRules">*10 numbers</string>
+    <string name="osid_textViewToolBarMyProfile">My Profile</string>
+    <string name="osid_buttonSave">Save</string>
 </resources>

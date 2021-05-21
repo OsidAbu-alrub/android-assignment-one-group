@@ -9,33 +9,29 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
+import android.widget.Toolbar;
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
-import java.util.List;
-
+// *********************************
+// MADE BY Banan Soliman (1170686)
+// ALSO OSID ABU-ALRUB (1183096)
+// *********************************
 public class DetailedActivity extends AppCompatActivity {
-        ListView listView;
-        ArrayList<String> ArrayList;
-        Button buttonAdd;
-        EditText editTextWriteNotes;
-        ArrayAdapter<String> arrayAdapter;
+    private Toolbar toolbar;
+    private ListView listView;
+    private ArrayList<String> ArrayList;
+    private Button buttonAdd;
+    private EditText editTextWriteNotes;
+    private ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
-        listView = (ListView)findViewById(R.id.ListViewNotes);
-        buttonAdd = (Button)findViewById(R.id.buttonAdd);
-        editTextWriteNotes = (EditText)findViewById(R.id.editTextNotes);
-
-        ArrayList = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,ArrayList);
-
-
+        init();
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,17 +43,7 @@ public class DetailedActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtubePlayView);
         getLifecycle().addObserver(youTubePlayerView);
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
@@ -66,5 +52,13 @@ public class DetailedActivity extends AppCompatActivity {
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });
+    }
+
+    private void init(){
+        listView = findViewById(R.id.ListViewNotes);
+        buttonAdd = findViewById(R.id.buttonAdd);
+        editTextWriteNotes = findViewById(R.id.editTextNotes);
+        ArrayList = new ArrayList<String>();
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,ArrayList);
     }
 }

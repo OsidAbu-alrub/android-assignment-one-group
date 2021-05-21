@@ -57,7 +57,7 @@ public class Validator {
         if(name.matches(NAME_REGEX) && (name.length() >= NAME_MIN_LENGTH && name.length() <= NAME_MAX_LENGTH)){
             return true;
         }
-        showToast("Must contain english letters only");
+        showToast("Invalid name");
         return false;
     }
 
@@ -66,7 +66,7 @@ public class Validator {
         if((userName.length() >= USERNAME_MIN_LENGTH && userName.length() <= USERNAME_MAX_LENGTH)) {
             return true;
         }
-        showToast("Length must be between 3 and 30");
+        showToast("Invalid username");
         return false;
     }
 
@@ -75,7 +75,7 @@ public class Validator {
         if(password.matches(PASSWORD_REGEX)){
             return true;
         }
-        showToast("Must have 1 numeric, 1 lowcase, 1 uppercase, and length >= 5");
+        showToast("Invalid password");
         return false;
     }
 
@@ -84,7 +84,7 @@ public class Validator {
         if(!email.isEmpty() && email.matches(EMAIL_REGEX)){
             return true;
         }
-        showToast("Make sure email is valid");
+        showToast("Invalid email");
         return false;
     }
 
@@ -93,7 +93,7 @@ public class Validator {
         if(phoneNumber.length() == PHONE_NUMBER_LENGTH){
             return true;
         }
-        showToast("Only numbers and length must equal 10");
+        showToast("Invalid phone number");
         return false;
     }
 
