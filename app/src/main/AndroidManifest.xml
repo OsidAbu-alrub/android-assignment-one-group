@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignmentOneGroup">
         <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".DetailedActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DetailedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
