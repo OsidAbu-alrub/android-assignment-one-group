@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidAssignmentOneGroup</string>
+    <string name="go_to_profile">Go to profile</string>
 </resources>
