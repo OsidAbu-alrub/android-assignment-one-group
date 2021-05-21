@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">AndroidAssignmentOneGroup</string>
+    <string name="app_name">Educative IO</string>
+    <string name="osid_textViewCreateAccount">
+        <u>No account? Create one!</u>
+    </string>
+    <string name="osid_textViewToolBarText">Welcome Back!</string>
+    <string name="osid_editTextUserName">Username</string>
+    <string name="osid_editTextPassword">Password</string>
+    <string name="osid_buttonLogin"> LOGIN </string>
+    <string name="osid_textViewRegisterToolBarText">Get Started!</string>
+    <string name="osid_editTextFirstName">First name</string>
+    <string name="osid_editTextLastName">Last name</string>
+    <string name="osid_editTextEmail">Email</string>
+    <string name="osid_editTextPhoneNumber">Phone number</string>
+    <string name="osid_buttonRegister">REGISTER</string>
+    <string name="osid_textViewLoginToAccount">
+        <u> Got an account? Login here! </u>
+    </string>
 </resources>

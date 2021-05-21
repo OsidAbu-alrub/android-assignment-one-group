@@ -1,5 +1,8 @@
 package com.abualrub.androidassignmentonegroup.domain;
 
+// *********************************
+// MADE BY OSID ABU-ALRUB (1183096)
+// *********************************
 public class Root<T> {
 
     private String error;
