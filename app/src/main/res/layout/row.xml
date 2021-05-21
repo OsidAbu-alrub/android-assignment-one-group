@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<!--*********************************-->
+<!--MADE BY MOHAMMAD MUTAIR (1180907)-->
+<!--ALSO OSID ABU-ALRUB (1183096)-->
+<!--*********************************-->
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="15dp">
 
     <ImageView
         android:id="@+id/mainIcon"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@mipmap/ic_launcher"
-        >
-    </ImageView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        />
         <TextView
             android:id="@+id/mainTitle"
             android:text="Title"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:layout_toLeftOf="@+id/iconGoToCourse"
+            android:layout_toRightOf="@id/mainIcon"
             android:layout_margin="5dp"
             />
         <TextView
@@ -34,10 +34,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
+            android:layout_toRightOf="@id/mainIcon"
             android:textStyle="bold"
             android:layout_margin="5dp"
-            android:textSize="15sp" />
+            android:layout_below="@id/mainTitle"
+            android:layout_toLeftOf="@+id/iconGoToCourse"
+            android:textSize="12sp" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iconGoToCourse"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-</LinearLayout>
+</RelativeLayout>
