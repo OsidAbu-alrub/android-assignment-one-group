@@ -1,32 +1,33 @@
 package com.abualrub.androidassignmentonegroup.utils;
 
+// *********************************
+// MADE BY OSID ABU-ALRUB (1183096)
+// *********************************
 public interface IURLs {
     // GET
     // TAKES: NOTHING
     // RETURNS: ARRAY OF COURSES
-    public static final String URL_COURSES = "http://10.0.2.2/android-rest/group-assignment-one/courses.php";
+    public static final String URL_COURSES = "http://98.90.90.110/android-rest/group-assignment-one/courses.php";
     // =================================================================================
     // GET
     // TAKES: studentId
     // RETURNS: Student Object
-    public static final String URL_GET_STUDENT = "http://10.0.2.2/android-rest/group-assignment-one/get-student.php";
+    public static final String URL_GET_STUDENT = "http://98.90.90.110/android-rest/group-assignment-one/get-student.php";
     // =================================================================================
     // POST
     // TAKES:
     // 	userName
     // 	password
     // RETURNS: Student Object
-    public static final String URL_LOGIN = "http://10.0.2.2/android-rest/group-assignment-one/login.php";
+    public static final String URL_LOGIN = "http://98.90.90.110/android-rest/group-assignment-one/login.php";
     // =================================================================================
     // GET
     // TAKES:
     //	studentId
     //	courseId
     // RETURNS:
-    //  TUPLE
-    //	  index 0 -> notes array
-    //    index 1 -> course object
-    public static final String URL_NOTES = "http://10.0.2.2/android-rest/group-assignment-one/get-course-details.php";
+    //  notes array
+    public static final String URL_NOTES = "http://98.90.90.110/android-rest/group-assignment-one/notes.php";
     // =================================================================================
     // POST
     // TAKES:
@@ -37,15 +38,19 @@ public interface IURLs {
     // 	email
     // 	phoneNumber
     // RETURNS: Student Object
-    public static final String URL_register = "http://10.0.2.2/android-rest/group-assignment-one/register.php";
+    public static final String URL_REGISTER = "http://98.90.90.110/android-rest/group-assignment-one/register.php";
     // =================================================================================
     // POST
     // TAKES: Student Object
     // RETURNS: Updated Student Object
-    public static final String URL_UPDATE_STUDENT = "http://10.0.2.2/android-rest/group-assignment-one/update-student.php";
+    public static final String URL_UPDATE_STUDENT = "http://98.90.90.110/android-rest/group-assignment-one/update-student.php";
     // =================================================================================
-    // GET
-    // TAKES: USERNAME
-    // RETURNS: USERNAME
-    public static final String URL_VALIDATE_USERNAME = "http://10.0.2.2/android-rest/group-assignment-one/validate-username.php";
+    // POST
+    // TAKES:
+    //	studentId
+    //	courseId
+    //  notes array (strings)
+    // RETURNS:
+    //  Message object
+    public static final String URL_UPDATE_NOTES = "http://98.90.90.110/android-rest/group-assignment-one/update-notes.php";
 }
