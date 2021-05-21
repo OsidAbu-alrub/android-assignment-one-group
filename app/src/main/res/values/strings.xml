@@ -27,4 +27,7 @@
     <string name="osid_textViewPhoneNumberRules">*10 numbers</string>
     <string name="osid_textViewToolBarMyProfile">My Profile</string>
     <string name="osid_buttonSave">Save</string>
+    <string name="osid_mainActivityTitle">
+        Courses
+    </string>
 </resources>
