@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Course {
     private int courseId;
     private String url;
+    private String category;
     private String title;
     private String shortDesc;
-    int icon;
     private String longDesc;
     private ArrayList<String> notes;
 
@@ -15,28 +15,14 @@ public class Course {
 
     }
 
-    public Course(String title, String shortDesc, int icon) {
-        this.title = title;
-        this.shortDesc = shortDesc;
-        this.icon = icon;
-    }
-
-    public Course(int courseId, String url, String title, String shortDesc, String longDesc, ArrayList<String> notes) {
+    public Course(int courseId, String url,String category, String title, String shortDesc, String longDesc, ArrayList<String> notes) {
         this.courseId = courseId;
         this.url = url;
+        this.category = category;
         this.title = title;
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
         this.notes = notes;
-
-    }
-
-    public int getIcon() {
-        return icon;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
     }
 
     public int getCourseId() {
@@ -85,5 +71,13 @@ public class Course {
 
     public void setNotes(ArrayList<String> notes) {
         this.notes = notes;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
