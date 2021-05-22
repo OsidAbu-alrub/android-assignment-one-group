@@ -1,25 +1,21 @@
 package com.abualrub.androidassignmentonegroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.abualrub.androidassignmentonegroup.domain.Root;
 import com.abualrub.androidassignmentonegroup.domain.Student;
+import com.abualrub.androidassignmentonegroup.utils.HttpGet;
 import com.abualrub.androidassignmentonegroup.utils.HttpPost;
 import com.abualrub.androidassignmentonegroup.utils.ITags;
 import com.abualrub.androidassignmentonegroup.utils.IURLs;
-import com.abualrub.androidassignmentonegroup.utils.Utils;
 import com.abualrub.androidassignmentonegroup.utils.Validator;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editor =  PreferenceManager.getDefaultSharedPreferences(this).edit();
+        getSupportActionBar().setTitle(R.string.osid_textViewToolBarMyProfile);
     }
 
     private void getIntentData(){
@@ -63,12 +60,10 @@ public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
             findViewById(R.id.buttonSave).setEnabled(false);
             return;
         }
-        editTextUserName.setText(student.getUserName());
-        editTextEmail.setText(student.getEmail());
-        editTextFirstName.setText(student.getFirstName());
-        editTextLastName.setText(student.getLastName());
-        editTextPassword.setText(student.getPassword());
-        editTextPhoneNumber.setText(student.getPhoneNumber());
+        HashMap<String,String> params = new HashMap<>();
+        params.put(STUDENT_ID,student.getStudentId()+"");
+        GetStudentTask runner = new GetStudentTask();
+        runner.execute(URL_GET_STUDENT,params);
     }
 
     public void buttonSaveHandleClick(View view) {
@@ -101,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
         runner.execute(URL_UPDATE_STUDENT,params);
     }
 
-    private void startMainActivity(Student student){
+    private void backToMainActivity(Student student){
         String jsonStudent = new Gson().toJson(student);
 
         // save to shared prefs
@@ -110,10 +105,7 @@ public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
         editor.commit();
 
         // start main activity
-        Intent i = new Intent(this,MainActivity.class);
-        i.putExtra(STUDENT,jsonStudent);
         finish();
-        startActivity(i);
     }
 
     private class ProfileUpdateTask extends AsyncTask<Object,Void,String> {
@@ -135,7 +127,35 @@ public class ProfileActivity extends AppCompatActivity implements IURLs, ITags {
                 return;
             }
             Toast.makeText(ProfileActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
-            startMainActivity(res.getData());
+            backToMainActivity(res.getData());
+        }
+    }
+
+    private class GetStudentTask extends AsyncTask<Object,Void,String> {
+        @Override
+        protected String doInBackground(Object ...args){
+            String URL = args[0]+"";
+            HashMap<String,String> params = (HashMap<String,String>)args[1];
+            HttpGet req = new HttpGet();
+            return req.get(URL,params);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<Root<Student>>(){}.getType();
+            Root<Student> res = gson.fromJson(result,type);
+            if(res.isError()){
+                Toast.makeText(ProfileActivity.this, res.getError(), Toast.LENGTH_LONG).show();
+                return;
+            }
+            student = res.getData();
+            editTextUserName.setText(student.getUserName());
+            editTextEmail.setText(student.getEmail());
+            editTextFirstName.setText(student.getFirstName());
+            editTextLastName.setText(student.getLastName());
+            editTextPassword.setText(student.getPassword());
+            editTextPhoneNumber.setText(student.getPhoneNumber());
         }
     }
 }

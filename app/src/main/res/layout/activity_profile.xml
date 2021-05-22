@@ -10,24 +10,9 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/osid_toolbarStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/osid_textViewToolBarTitle"
-            android:text="@string/osid_textViewToolBarMyProfile"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="15dp" />
-    </androidx.appcompat.widget.Toolbar>
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -178,7 +163,7 @@
                 android:text="@string/osid_textViewPhoneNumberRules" />
 
             <Button
-                android:id="@+id/buttonRegister"
+                android:id="@+id/buttonSave"
                 android:layout_below="@id/textViewPhoneNumberRules"
                 android:layout_centerHorizontal="true"
                 android:onClick="buttonSaveHandleClick"
