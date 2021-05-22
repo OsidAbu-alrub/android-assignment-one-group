@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-   *********************************
-   MADE BY OSID ABU-ALRUB (1183096)
-   *********************************
--->
+<!--*********************************-->
+<!--ALSO OSID ABU-ALRUB (1183096)-->
+<!--*********************************-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/osid_toolbarStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/osid_textViewToolBarTitle"
-            android:text="@string/osid_textViewToolBarText"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="15dp" />
-    </androidx.appcompat.widget.Toolbar>
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
         >
-
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
@@ -49,7 +29,7 @@
                 style="@style/osid_editTextStyle"
                 android:hint="@string/osid_editTextUserName"
                 android:layout_below="@id/textViewTitle"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:inputType="text"/>
 
             <TextView

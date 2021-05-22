@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,7 +40,14 @@ public class LoginActivity extends AppCompatActivity implements ITags, IURLs {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+    }
 
+    // we get data from shared intent in onStart
+    // to ensure it stays up to date when user backs out of
+    // main activity to login activity
+    @Override
+    protected void onStart() {
+        super.onStart();
         boolean isCreated = prefs.getBoolean(IS_CREATED,false);
         if(!isCreated) return;
         Student student = new Gson().fromJson(prefs.getString(STUDENT,null),Student.class);
@@ -72,6 +80,7 @@ public class LoginActivity extends AppCompatActivity implements ITags, IURLs {
         editTextPassword = findViewById(R.id.editTextPassword);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = prefs.edit();
+        getSupportActionBar().setTitle(R.string.osid_textViewToolBarText);
     }
 
     private void startMainActivity(Student student){
