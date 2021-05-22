@@ -30,4 +30,6 @@
     <string name="osid_mainActivityTitle">
         Courses
     </string>
+    <string name="osid_textViewWriteNotes">Write Notes</string>
+    <string name="osid_buttonAdd">Add</string>
 </resources>

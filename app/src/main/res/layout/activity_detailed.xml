@@ -11,19 +11,6 @@
     android:orientation="vertical"
     tools:context=".DetailedActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/osid_toolbarStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/osid_textViewToolBarTitle"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="15dp" />
-    </androidx.appcompat.widget.Toolbar>
-
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtubePlayView"
         android:layout_width="match_parent"
@@ -34,38 +21,42 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
-                android:layout_height="157dp"
-                android:gravity="center"
-                android:text="Description"
+                android:layout_height="wrap_content"
                 android:textSize="18sp" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextNotes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Write Notes" />
+                style="@style/osid_editTextStyle"
+                android:hint="@string/osid_textViewWriteNotes" />
 
             <Button
                 android:id="@+id/buttonAdd"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add" />
+                style="@style/osid_buttonStyle"
+                android:layout_gravity="center"
+                android:onClick="buttonAddHandleClick"
+                android:text="@string/osid_buttonAdd" />
 
             <ListView
                 android:id="@+id/ListViewNotes"
-                android:layout_width="match_parent"
-                android:layout_height="178dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:layout_weight="1"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
