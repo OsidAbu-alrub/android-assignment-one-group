@@ -14,10 +14,12 @@ public interface ITags {
     public static final String PASSWORD = "password";
     public static final String EMAIL ="email";
     public static final String PHONE_NUMBER = "phoneNumber";
+    public static final String COURSE = "COURSE";
     public static final String  COURSE_ID = "courseId";
     public static final String  URL = "url";
+    public static final String CATEGORY = "category";
     public static final String  TITLE = "title";
     public static final String  SHORT_DESC = "shortDesc";
     public static final String  LONG_DESC = "longDesc";
-    public static final String  NOTE = "note";
+    public static final String  NOTES = "notes";
 }
