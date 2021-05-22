@@ -10,11 +10,15 @@ public interface ICategory {
     public static final String LANGUAGES = "languages";
     public static final String COOKING = "cooking";
     public static final String SCIENCE = "science";
+    public static final String HISTORY = "history";
+    public static final String FINANCE = "finance";
     public static final String LIFE = "life";
 
     public static final int PROGRAMMING_ICON = R.drawable.programming;
     public static final int LANGUAGE_ICON = R.drawable.languages;
     public static final int COOKING_ICON = R.drawable.cooking;
     public static final int SCIENCE_ICON = R.drawable.science;
+    public static final int HISTORY_ICON = R.drawable.history;
+    public static final int FINANCE_ICON = R.drawable.finance;
     public static final int LIFE_ICON = R.drawable.life;
 }
