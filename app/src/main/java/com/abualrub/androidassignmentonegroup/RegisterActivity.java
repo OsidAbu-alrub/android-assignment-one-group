@@ -108,9 +108,10 @@ public class RegisterActivity extends AppCompatActivity implements IURLs, ITags 
         editTextEmail = findViewById(R.id.editTextEmail);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = prefs.edit();
+        getSupportActionBar().setTitle(R.string.osid_textViewRegisterToolBarText);
     }
 
-    private void startMainActivity(Student student){
+    private void startLoginActivity(Student student){
         String jsonStudent = new Gson().toJson(student);
 
         // save to shared prefs
@@ -119,8 +120,7 @@ public class RegisterActivity extends AppCompatActivity implements IURLs, ITags 
         editor.commit();
 
         // start main activity
-        Intent i = new Intent(this,MainActivity.class);
-        i.putExtra(STUDENT,jsonStudent);
+        Intent i = new Intent(this,LoginActivity.class);
         finish();
         startActivity(i);
     }
@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity implements IURLs, ITags 
                 Toast.makeText(RegisterActivity.this, res.getError(), Toast.LENGTH_LONG).show();
                 return;
             }
-            startMainActivity(res.getData());
+            startLoginActivity(res.getData());
         }
     }
 }
