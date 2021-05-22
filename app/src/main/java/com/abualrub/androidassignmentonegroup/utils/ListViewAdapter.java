@@ -85,6 +85,12 @@ public class ListViewAdapter extends BaseAdapter implements ICategory {
             case SCIENCE:
                 holder.cIcon.setImageResource(SCIENCE_ICON);
                 break;
+            case HISTORY:
+                holder.cIcon.setImageResource(HISTORY_ICON);
+                break;
+            case FINANCE:
+                holder.cIcon.setImageResource(FINANCE_ICON);
+                break;
             default:
                 holder.cIcon.setImageResource(LIFE_ICON);
         }
